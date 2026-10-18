@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>推箱子 · Sokoban</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>" />
+</head>
+<body>
+  <div class="app">
+    <!-- 顶栏 -->
+    <header class="topbar">
+      <div class="title-group">
+        <h1>📦 推箱子</h1>
+        <span class="subtitle" id="meta-set"></span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-label">关卡</span><span class="stat-value" id="level-title">—</span></div>
+        <div class="stat"><span class="stat-label">步数</span><span class="stat-value" id="move-count">0</span></div>
+        <div class="stat"><span class="stat-label">推动</span><span class="stat-value" id="push-count">0</span></div>
+        <div class="stat"><span class="stat-label">入位</span><span class="stat-value" id="box-count">0/0</span></div>
+      </div>
+      <div class="actions">
+        <button id="btn-undo" class="btn" title="撤销一步 (Z)">↩ 撤销</button>
+        <button id="btn-restart" class="btn" title="重开本关 (R)">⟳ 重开</button>
+        <button id="btn-prev" class="btn" title="上一关 (P)">◀</button>
+        <button id="btn-next" class="btn" title="下一关 (N)">▶</button>
+        <button id="btn-mute" class="btn" title="静音 (M)">🔊 音效开</button>
+      </div>
+    </header>
+
+    <!-- 主体 -->
+    <main class="main">
+      <section class="board-area">
+        <div id="board-wrap">
+          <canvas id="board"></canvas>
+          <!-- 过关浮层 -->
+          <div id="win-overlay">
+            <div class="win-card">
+              <div class="win-emoji">🎉</div>
+              <h2>过关！</h2>
+              <p id="win-stats"></p>
+              <div class="win-btns">
+                <button id="btn-win-replay" class="btn btn-primary">再来一次</button>
+                <button id="btn-win-next" class="btn btn-primary">下一关 ▶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 移动端方向盘 -->
+        <div id="dpad">
+          <button data-dir="0,-1" class="dpad-up">▲</button>
+          <button data-dir="-1,0" class="dpad-left">◀</button>
+          <button data-dir="1,0" class="dpad-right">▶</button>
+          <button data-dir="0,1" class="dpad-down">▼</button>
+        </div>
+        <p class="hint">键盘：方向键 / WASD 移动 · Z 撤销 · R 重开 · N/P 切关 · M 静音　|　触屏：滑动画面或点方向盘</p>
+      </section>
+
+      <!-- 侧栏：关卡选择 -->
+      <aside class="sidebar">
+        <div class="progress-box">
+          <div class="progress-info">
+            <span id="progress-text">已通关 0 / 155</span>
+          </div>
+          <div class="progress-track"><div id="progress-bar"></div></div>
+        </div>
+        <div class="level-list-head">关卡列表 <span class="levels-from">Microban 社区关卡集</span></div>
+        <div id="level-list"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
