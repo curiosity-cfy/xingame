@@ -34,8 +34,10 @@ npx serve .
 git add -A && git commit -m "更新说明"
 
 # 2. 推送（GitHub Pages 自动构建，约 1 分钟生效）
-git push
+git push --force
 ```
+
+> 首次推送如提示历史不一致，加 `--force` 即可（远程仓库的初始提交历史是首次部署时通过 API 建立的，之后本地与远程就一致了）。在自己电脑上推送时，Git 会自动弹出使用已保存的 GitHub 凭据。
 
 ### 其他免费托管方式（任选）
 
